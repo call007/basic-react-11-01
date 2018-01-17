@@ -1,43 +1,28 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 
 class Article extends Component {
     constructor(props) {
-        super(props)
-
+        super(props);
         this.state = {
-            isOpen: props.defaultOpen,
-            foo: null
+            isOpen: props.defaultOpen
         }
     }
 
     componentWillMount() {
-        console.log('---', 'mounting')
+        console.log('Mounting')
     }
 
-    componentDidMount() {
-        console.log('---', 'mounted')
+    componentDidount() {
+        console.log('Mounted');
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('---', 'will receive props')
-        if (this.props.defaultOpen !== nextProps.defaultOpen) this.setState({
-            isOpen: nextProps.defaultOpen
-        })
+        console.log('will update');
     }
-
-    componentWillUpdate(nexState) {
-//        if (nexState.isOpen) fetchData()
-    }
-/*
-    state = {
-        isOpen: true
-    }
-*/
 
     render() {
-        const {article} = this.props
-//        if (this.state.isOpen) throw new Error()
-        const body = this.state.isOpen && <section>{article.text}</section>
+        const {article} = this.props;
+        const body = this.state.isOpen && <section>{article.text}</section>;
         return (
             <div>
                 <h2>
@@ -49,23 +34,16 @@ class Article extends Component {
                 {body}
                 <h3>creation date: {(new Date(article.date)).toDateString()}</h3>
             </div>
-        )
+        );
     }
 
     handleClick = () => {
-        this.setState((state) => ({
-            isOpen: !state.isOpen
-        }))
-/*
-        this.setState((state) => {
-            console.log('---', this.state, state)
-            return {
-                isOpen: !state.isOpen
-            }
+        console.log('---', 'clicked');
+        this.setState({
+            isOpen: !this.state.isOpen
         })
-*/
     }
 }
 
 
-export default Article
+export default Article;
